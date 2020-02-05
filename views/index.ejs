@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../views/partials/head'); %>
+</head>
+<body class="container">
+    
+<header>
+    <%- include('../views/partials/header'); %>
+</header>
+
+<main>
+    <div class="jumbotron ">
+        <h3>Licencias en uso</h3>
+        
+             <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tipo de licencia</th>
+                        <th scope="col">Usuario</th>
+                    </tr>
+                </thead>
+            
+            <% if (licenses.length > 0) { %>
+                <% for (var i = 0; i < licenses.length; i++) { %>
+                <tr>
+                    <td> <%= i+1 %> </td>
+                    <td><%= licenses[i].product %> </td>
+                    <td><%= licenses[i].user %> </td>
+                </tr>    
+                <% } %>
+            <% } else { %>
+                <h2> <font color="grey"> <center> No hay licencias en uso </center> </font> </h2>
+                <% } %>
+          </table>
+
+          <h3>Total licencias</h3>
+          <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Tipo de licencia</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Usadas</th>
+                    <th scope="col">Libres</th>
+                </tr>
+            </thead>
+        
+        <% if (totalLic != undefined && totalLic.length > 0) { %>
+            <% for (var i = 0; i < totalLic.length; i++) { %>
+            <tr>
+                <td><%= totalLic[i].lic_type %> </td>
+                <td><%= totalLic[i].lic_total %> </td>
+                <td><%= totalLic[i].lic_in_use %> </td>
+                <td><%= totalLic[i].lic_free %> </td>
+            </tr>    
+            <% } %>
+        <% } %>
+
+      </table>
+
+
+          <button type="button" class="btn btn-dark" onClick="window.location.reload();">Actualizar</button>
+    </div>
+</main>
+
+<footer>
+    <%- include('../views/partials/footer'); %>
+</footer>
+<!-- Robar es malo -->
+<!-- dev: ewysoczanski -->
+</body>
+</html>
