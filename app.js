@@ -17,7 +17,7 @@ var app = express();
 // 8080 > puerto produccion
 // deployado en produccion se puede acceder desde cualquier pc que este en arlumina
 const PORT = 8080;
-const HOSTNAME = '172.16.2.5';
+const HOSTNAME = '172.16.1.93'; //IP del local host
 
 
 app.use(favicon(path.join(__dirname + '/public/images/favicon.ico')))

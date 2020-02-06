@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
 
                   res.render('../views/index', {
                       licenses : (emptyArray),
-                      totalLic : (licNumber)
+                      totalLic : (licNumber.sort(function(a,b){return compareStrings(a.lic_type, b.lic_type)}))
                   })
               })
           }).catch(error => {console.error(' - ERROR - ', error)})
@@ -37,8 +37,8 @@ router.get('/', function(req, res) {
                   //console.log('total lice', totalLicencias);
 
                   res.render('../views/index', {
-                      licenses : (licencias.Lics),
-                      totalLic : (totalLicencias)
+                      licenses : (licencias.Lics.sort(function(a,b){return compareStrings(a.lic_type, b.lic_type)})),
+                      totalLic : (totalLicencias.sort(function(a,b){return compareStrings(a.lic_type, b.lic_type)}))
                   });
 
               });
@@ -191,5 +191,10 @@ async function parseLicsInUse(arrayLicenciasEnUso, arrayTotal){
   return finalLic.lic_info;
 }
 
-
+//Compara strings y devuelve en orden alfabatico
+function compareStrings(a, b) {
+    // Assuming you want case-insensitive comparison
+    return (a < b) ? -1 : (a > b) ? 1 : 0;
+}
+ 
 module.exports = router;
